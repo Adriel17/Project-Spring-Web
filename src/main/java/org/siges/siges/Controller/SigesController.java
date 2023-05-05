@@ -1,22 +1,27 @@
 package org.siges.siges.Controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 
-@Controller("/siges")
+@Controller
 public class SigesController {
+	
+	private static final Logger log = LoggerFactory.getLogger(SigesController.class);
 
-	@GetMapping
-	public @ResponseBody String vaklsjdl(){
-		try {
-			return "Hello World!!";
+	@GetMapping("/start")
+	public ModelAndView vaklsjdl(){
+		try { 
+			ModelAndView model = new ModelAndView("main");
+			return model;
 		} catch (Exception e) {
-			return "Como assim deu erro?";
+			log.error(e.getMessage());
+			throw e;
 		}		
 	}
-	
 	
 	
 }
